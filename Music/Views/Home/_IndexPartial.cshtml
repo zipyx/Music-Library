@@ -1,0 +1,171 @@
+﻿@model Clam.Areas.Music.Models.MusicHome
+
+@if (Model.SearchRequest != null)
+{
+    <div class="swiper-container swiper-container-music">
+        <h2 style="text-align:left; float: left; color: whitesmoke">Searched for: </h2>
+        <h2 style="text-align:left; float: left; padding-left: 20px;">@Model.SearchRequest</h2>
+        <hr style="clear:both;" />
+        <p>Found @Model.AreaUserMusics.Count results</p>
+        @if (Model.AreaUserMusics.Count > 0)
+        {
+            <div class="swiper-wrapper">
+                @foreach (var item in Model.AreaUserMusics)
+                {
+                    <div class="swiper-slide swiper-slide-music">
+                        <div class="imgBox">
+                            <a data-toggle="modal" data-src="@item.ItemPath">
+                                <img src="~/AppData/track-icon.png" />
+                            </a>
+                        </div>
+                        <div class="details" id="filmName">
+                            <a data-toggle="modal" data-src="@item.ItemPath">
+                                <h3>
+                                    @item.SongTitle
+                                </h3>
+                            </a>
+                        </div>
+                        <div class="watch-container">
+                            <div class="button-group">
+                                <span>
+                                    @item.SongArtist
+                                </span>
+                                <audio controls>
+                                    <source src="~/AfpMData/@item.ItemPath" type="audio/mp3" />
+                                </audio>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <!-- Add Arrows -->
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+        }
+        else
+        {
+            <h5 style="color:whitesmoke">None Found</h5>
+        }
+    </div>
+}
+else
+{
+    <!-- Swiper Container for handling Recommended Music -->
+    <div class="swiper-container swiper-container-music">
+        <h2>What to listen to</h2>
+        <h4>Recommended Music</h4>
+        <p>Selected just for you</p>
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.RecommendedList)
+            {
+                <div class="swiper-slide swiper-slide-music">
+                    <div class="imgBox">
+                        <a data-toggle="modal" data-src="@item.ItemPath">
+                            <img src="~/AppData/track-icon.png" />
+                        </a>
+                    </div>
+                    <div class="details" id="filmName">
+                        <a data-toggle="modal" data-src="@item.ItemPath">
+                            <h3>
+                                @item.SongTitle
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="watch-container">
+                        <div class="button-group">
+                            <span>
+                                @item.SongArtist
+                            </span>
+                            <audio controls>
+                                <source src="~/AfpMData/@item.ItemPath" type="audio/mp3" />
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <br />
+
+    <!-- Swiper Container for handling Recently Added Music -->
+    <div class="swiper-container swiper-container-music">
+        <h2>Recently Added</h2>
+        <p>Oldest to Newest</p>
+        <div class="swiper-wrapper">
+            @foreach (var item in Model.RecommendedList)
+            {
+                <div class="swiper-slide swiper-slide-music">
+                    <div class="imgBox">
+                        <a data-toggle="modal" data-src="@item.ItemPath">
+                            <img src="~/AppData/track-icon.png" />
+                        </a>
+                    </div>
+                    <div class="details" id="filmName">
+                        <a data-toggle="modal" data-src="@item.ItemPath">
+                            <h3>
+                                @item.SongTitle
+                            </h3>
+                        </a>
+                    </div>
+                    <div class="watch-container">
+                        <div class="button-group">
+                            <span>
+                                @item.SongArtist
+                            </span>
+                            <audio controls>
+                                <source src="~/AfpMData/@item.ItemPath" type="audio/mp3" />
+                            </audio>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        <!-- Add Arrows -->
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+
+    </div>
+    <br />
+
+    <!-- Swiper Container for handling Genre Music -->
+    @foreach (var value in Model.AreaUserMusicCategories)
+    {
+        if (value.AreaUserMusicCategories.Count != 0)
+        {
+            <br />
+            <div class="swiper-container swiper-container-music-genre">
+                <h3>@value.CategoryName</h3>
+                <div class="swiper-wrapper">
+                    @foreach (var item in value.AreaUserMusicCategories)
+                    {
+                        <div class="swiper-slide swiper-slide-music-genre">
+                            <div class="imgBox">
+                                <a data-toggle="modal" data-src="@item.ItemPath">
+                                    <img src="~/AppData/track-icon.png" />
+                                </a>
+                            </div>
+                            <div class="details" id="filmName">
+                                <a data-toggle="modal" data-src="@item.ItemPath">
+                                    <h3>
+                                        @item.SongTitle
+                                    </h3>
+                                </a>
+                            </div>
+                            <div class="watch-container">
+                                <div class="button-group">
+                                    <span>
+                                        @item.SongArtist
+                                    </span>
+                                    <audio controls>
+                                        <source src="~/AfpMData/@item.ItemPath" type="audio/mp3" />
+                                    </audio>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+            <br />
+        }
+    }
+}

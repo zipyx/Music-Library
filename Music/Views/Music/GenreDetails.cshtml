@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Clam.Areas.Music.Models.MusicGenreSelection>
+@{
+    ViewData["Title"] = "GenreDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var CategoryName = ViewBag.CategoryName;
+}
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/music/manage">Music</a></li>
+        <li class="breadcrumb-item"><a href="/music/manage/genre">Genre</a></li>
+        <li class="breadcrumb-item active" aria-current="page">@CategoryName</li>
+    </ol>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th class="text-center">
+                @Html.DisplayNameFor(model => model.IsSelected)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SongTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SongArtist)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SongId)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-center">
+                    @Html.DisplayFor(modelItem => item.IsSelected)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongArtist)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SongId)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
